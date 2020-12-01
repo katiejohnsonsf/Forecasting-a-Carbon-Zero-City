@@ -1,5 +1,3 @@
-![Carbon Zero City logo](images/CO20_logo.jpg)
-
 # Forecasting a Carbon Zero City 
 
 ![Carbon Zero City Map](images/CO20_map.jpg)
@@ -36,4 +34,4 @@ I sourced electrical consumption data through the City of Gainesville website. T
 ## Sources
 * U.S. Census Bureau (population data)
 https://data.census.gov/cedsci/profile?g=1600000US1225175
-* Carbon Zero: Imagining Cities That Can Save the Planet (images)
+* Carbon Zero: Imagining Cities That Can Save the Planet (images) https://www.amazon.com/Carbon-Zero-Imagining-Cities-Planet-ebook/dp/B00AEWHU8E
