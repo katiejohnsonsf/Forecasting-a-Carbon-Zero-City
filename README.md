@@ -25,5 +25,15 @@ I sourced electrical consumption data through the City of Gainesville website. T
 * Sourced data from the U.S. Census Bureau on population for the City of Gainesville
 * Sourced monthyl electrical consumption data from the City of Gainesville's website
 * Merged data for the population of Gainesville with electrical consumption data to analyze and visualize.
+
+### Variable Creation
 * Once I had the data I needed as a single dataframe, my first goal was to aggregate electrical consumption to find the average electrical consumption for each month for the city since the data collection started in 2012. Using Pandas groupby() and .mean(), I found 106 monthly values. 
-* I plotted these 
+* Average monthly electrical consumption per capita 
+* cost per unit reduction 
+
+![Avg Monthly kWh per Capita](images/kWh_per_capita.png)
+
+## Sources
+* U.S. Census Bureau (population data)
+https://data.census.gov/cedsci/profile?g=1600000US1225175
+* Carbon Zero: Imagining Cities That Can Save the Planet (images)
