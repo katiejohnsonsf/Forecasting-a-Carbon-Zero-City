@@ -31,6 +31,36 @@ I sourced electrical consumption data through the City of Gainesville website. T
 
 ![Avg Monthly kWh per Capita](images/kWh_per_capita.png)
 
+## Judgemental Forecasting
+
+Judgmental forecasts are generated to estimate the impact of a greater energy efficiency improvement rate. These are shown by the green items. The pink items indicate electrical data used obtained from the City of Gainesville. The blue items show things that are calculated from the data provided.
+
+### Summary of Forecast Process
+
+![Scheme](images/Scheme.png)
+
+### Assumptions
+
+
+## Models
+
+### ARIMA
+
+## Performance based on changes in efficiency 
+
+| Model | no consumption | 0.005 | 0.010 | 0.015 | 0.020| 0.025 |
+|-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|| ||MSE      | |    | |
+| Random Forest | |  |  |  |  | |
+| OLS Linear | |  |  |  |  | |
+| OLS SMF    | |  |  |  |  | |
+
+## Evaluation
+
+## Insights
+
+## Next Steps
+
 ## Sources
 * U.S. Census Bureau (population data)
 https://data.census.gov/cedsci/profile?g=1600000US1225175
