@@ -37,7 +37,7 @@ Judgmental forecasts are generated to estimate the impact of a greater energy ef
 
 ### Summary of Forecast Process
 
-![Scheme](images/Scheme.png)
+![Scheme](images/scheme.png)
 
 ### Assumptions
 
