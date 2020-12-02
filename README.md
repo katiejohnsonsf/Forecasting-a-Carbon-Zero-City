@@ -33,7 +33,7 @@ I sourced electrical consumption data through the City of Gainesville website. T
 
 ## Judgemental Forecasting
 
-Judgmental forecasts are generated to estimate the impact of a greater energy efficiency improvement rate. These are shown by the green items. The pink items indicate electrical data used obtained from the City of Gainesville. The blue items show things that are calculated from the data provided.
+Judgmental forecasts are generated to estimate the impact of a greater energy efficiency improvement rate and the renewable energy transition rate. These are shown by the green item. The pink items indicate electrical data used obtained from the City of Gainesville. The purple items show things that are calculated from the data provided.
 
 ### Summary of Forecast Process
 
