@@ -59,9 +59,7 @@ I also checked how transforming my data using a log transform would impact my st
 
 <br>
 
-![Decomposition](images/seas_decomp.png)
-
-<br>
+![Decomposition](images/seas_decomp.png) 
 
 ### Assumptions
 
@@ -70,7 +68,7 @@ The EPA egrid sites Carbon intensity for all of Florida (including Gainesville) 
 
 Energy effiency improvement and renewable energy transition rates will be constant bewteen 2020 and 2035. This analogue judgemental adjustment is derived from projections in Bellingham's carbon policy.
 
-## Models
+## Model
 
 ### SARIMAX
 
