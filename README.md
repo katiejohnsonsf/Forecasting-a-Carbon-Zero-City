@@ -101,7 +101,7 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 
 
 
-![Performance of SARIMAX Model](images/pred_plot.png)
+![prediction to 2035](images/pred_plot.png)
 
 ## Evaluation
 
