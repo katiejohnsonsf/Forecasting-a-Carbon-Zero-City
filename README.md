@@ -99,9 +99,7 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 ### Monthly Electricity Consumption Forcast to 2035 with SARIMAX
 (does not reflect increases in population past 2020)
 
-
-
-![prediction to 2035](images/pred_plot.png)
+![Prediction to 2035](images/pred_plot.png)
 
 ## Evaluation
 
