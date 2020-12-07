@@ -109,7 +109,7 @@ SARIMAX MSE = 0.00223
  
 ## Next Steps
  
-To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I used Judgmental adjustments from an analogue city where there has been more research with some data available. These adjustments are based on expert projections for Bellingham, WA, which is approximately the same size as Gainesville.
+To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I will use Judgmental adjustments from an analogue city where there has been more research with some data available. These adjustments are based on expert projections for Bellingham, WA, which is approximately the same size as Gainesville.
  
 ### Possible Limitations of Judgemental Adjustments
  
