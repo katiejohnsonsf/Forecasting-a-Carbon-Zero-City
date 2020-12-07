@@ -28,6 +28,7 @@ Predicting individual and aggregate reduction benchmarks could help expand inves
    * Florida carbon intensity: 931.84 lb / MWh
 <br>
 ## Variable Creation and Stationary Process Methods
+
 Combining data into a single dataframe, I started by aggregating electrical consumption from individual addresses to find the average electrical consumption for each month for the city for each month since January 2012. Using Pandas groupby() and .mean(), I found 106 monthly values. I normalized the monthly average consumption by Gainesville's population each year to get my target variable, monthly average electrical consumption per capita.
  
 ![Avg Monthly kWh per Capita](images/kWh_per_capita.png)
