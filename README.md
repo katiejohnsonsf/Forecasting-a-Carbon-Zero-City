@@ -49,6 +49,8 @@ By removing the observation in the data during the COVID pandemic, I can achieve
 Before removing COVID data P-value: 0.562681
  
 After removing COVID data P-value: 0.240378
+
+
  
 While not within the 0.05 threshold yet for stationarity, removing observations during COVID significantly improved P-value.
  
@@ -105,8 +107,7 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
  
 ## Evaluation
  
-SARIMAX MSE = 0.00223
- 
+SARIMAX AIC: -736.396
 <br>
  
 ## Next Steps
