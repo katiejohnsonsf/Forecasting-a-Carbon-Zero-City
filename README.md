@@ -97,16 +97,22 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 <br>
  
 ![Performance of SARIMAX Model](images/test_pred_plot.png)
+
  
 <br>
  
 ### Monthly Electricity Consumption Forecast to 2035 with SARIMAX
 (does not reflect increases in population past 2020)
- 
-![Prediction to 2035](images/zoom_out_ci.png)
+
+ <br>
+
+![Prediction to 2035](images/zoomed_out.png)
 
 ### Montly Electrical Consumption Forecast within the Nearer Term: More Reasonable
-![Prediction to 2022](images/zoom_in_ci.png)
+
+<br>
+
+![Prediction to 2022](images/2022_pred.png)
  
 ## Model Evaluation
  
@@ -118,11 +124,11 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
  
 ## Next Steps
  
-To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I will use Judgmental adjustments from an analogue city where there has been more research with some data available. These adjustments are based on expert projections for Bellingham, WA, which is approximately the same size as Gainesville.
+To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I will use Judgmental adjustments from an analogue city where there has been more research with some data available. These adjustments are based on projections for Bellingham, WA, which is approximately the same size as Gainesville.
  
 ### Possible Limitations of Judgemental Adjustments
  
-Using judgemental adjustments about carbon reductions may not apply to Gainesville so a better analogue may yield better results. Additionally, Bellingham's projections may not be accurate making it a weak signal for forecasting. Further information is needed to verify the accuracy of Bellingham's forecast - the data for which is not currently publicly available at the city level.
+Using judgemental adjustments about carbon reductions may not apply to Gainesville so a better analogue may yield better results. Additionally, Bellingham's projections may not be accurate making it a weak signal for forecasting. 
  
 The scheme below shows how judgemental adjustments are used in the model: judgemental adjustments are shown by the green diamonds, pink squares indicate electrical data, and purple items show the elements calculated from the observed data.
  
