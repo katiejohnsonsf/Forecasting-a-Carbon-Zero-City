@@ -28,7 +28,7 @@ Predicting individual and aggregate reduction benchmarks could help expand inves
    * Florida carbon intensity: 931.84 lb / MWh
 <br>
 
-## Variable Creation and Stationary Process Methods
+## Variable Creation
 
 Combining data into a single dataframe, I started by aggregating electrical consumption from individual addresses to find the average electrical consumption for each month for the city for each month since January 2012. Using Pandas groupby() and .mean(), I found 106 monthly values. I normalized the monthly average consumption by Gainesville's population each year to get my target variable, monthly average electrical consumption per capita.
  
@@ -42,7 +42,7 @@ The COVID anomaly is also apparent by looking at this histogram showing counts f
  
 <br>
  
-## Stationary Process
+## Box-Jenkins Method Stationary Process
  
 By removing the observation in the data during the COVID pandemic, I can achieve better stationarity in my data. To validate this, I used the Augmented Dickey-Fuller test to find p-values for my data before and after removing COVID dates:
  
@@ -76,11 +76,13 @@ Energy efficiency improvement and renewable energy transition rates will be cons
  
 ### SARIMAX
  
-After splitting the data, used the Seasonal AutoRegressive Integrated Moving Average with eXogenous regressors model. I did not use exogenous regressors so that parameter defaults to None. I chose this model because it includes seasonal components for the order which takes into account the seasonal length. This allows the model to achieve better stationarity without further manual transformations.
+Since my data has a strong seasonal component, I used the Seasonal AutoRegressive Integrated Moving Average with exogenous regressors model, which includes a parameter for seasonal legnth. This allows the model to achieve better stationarity without further manual transformations. For the initial project phase, the exogenous regressors parameter is None. 
  
 <br>
  
 ![SARIMAX AC and PAC functions](images/AC_PAC_functions.png)
+
+I found the autocorrelation and partial autocorrelation to get a rough sense for the complexity of my model for estimating a range for my parameters for grid search. 
  
 <br>
  
@@ -92,7 +94,7 @@ I used GridSearch to iterate through possible values for the following SARIMAX p
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 2),(2, 1, 1, 4) with an AIC of -756.33.
+The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 1),(2, 1, 1, 4) with an AIC of -756.33.
  
 <br>
  
@@ -119,7 +121,7 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 ## Model Evaluation
  
 ### SARIMAX 
-* Not diffed data AIC: -744.246
+* Not diffed data AIC: -765.112
 * Diffed data AIC: -765.112
 * MSE - 0.0022
 <br>
