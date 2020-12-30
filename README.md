@@ -110,7 +110,7 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 
 ![Prediction to 2035 with Confidence Intervals](images/zoom_out_ci.png)
 
-### Montly Electrical Consumption Forecast within the Nearer Term: More Reasonable
+### Monthly Electrical Consumption Forecast within the Nearer Term: More Reasonable
 
 <br>
 
