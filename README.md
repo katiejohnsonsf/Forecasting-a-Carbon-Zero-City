@@ -94,7 +94,7 @@ I used GridSearch to iterate through possible values for the following SARIMAX p
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 1),(2, 1, 1, 4) with an AIC of -756.33.
+The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 1),(2, 1, 1, 4) with an AIC of -765.112.
  
 <br>
  
