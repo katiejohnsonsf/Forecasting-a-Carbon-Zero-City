@@ -103,11 +103,17 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 ### Monthly Electricity Consumption Forecast to 2035 with SARIMAX
 (does not reflect increases in population past 2020)
  
-![Prediction to 2035](images/pred_plot.png)
+![Prediction to 2035](images/zoom_out_ci.png)
+
+### Montly Electrical Consumption Forecast within the Nearer Term: More Reasonable
+![Prediction to 2022](images/zoom_in_ci.png)
  
-## Evaluation
+## Model Evaluation
  
-SARIMAX AIC: -736.396
+### SARIMAX 
+* Not diffed data AIC: -744.246
+* Diffed data AIC: -765.112
+* MSE - 0.0022
 <br>
  
 ## Next Steps
