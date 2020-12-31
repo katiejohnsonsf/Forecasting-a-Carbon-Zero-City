@@ -49,7 +49,7 @@ class Model():
     Run SARIMAX Model
     
     ==Output==
-    1 Models - SARIMAX
+    1 Model - SARIMAX
 
     1 subplots 
         [1] Forecast Plot with associated MSE score
@@ -61,7 +61,9 @@ class Model():
         - 'Grid Search'
 
     ==Included Functions==
-    +train_test
+    +load_df
+    +train
+    +test
     +grid_search
     +evaluate_SARIMAX_model
     +plot_SARIMAX_pred
@@ -70,35 +72,56 @@ class Model():
     
    '''
     
-    def __init__(self,order_method='grid_search'):
+    def __init__(self):
         self.self = self
-        self.order_method=order_method
+        self.files = ['stationary-data/not_diffed.csv']
     
-    def train_test(self, df):
+    def load_stationary_data(self):
+        print(" 1 of 6 |    Reading in data \n         |       not_diffed.csv")
+        covid_rem_df = pd.read_csv('./stationary-data/not_diffed.csv')
+        return covid_rem_df
+    
+    def create_train_set(self, covid_rem_df):
         '''
         ==Function==
         Split data into train(80%) and test(20%) dataframes 
         
         ==Returns==
-        Train dataframe, test dataframe 
+        Train dataframe
         
         '''
+        covid_rem_df = self.load_stationary_data()
         tr_start,tr_end = '2012-02-28','2018-05-31'
+
+        train_diff0 = covid_rem_df[tr_start:tr_end]
+        return train_diff0
+
+    def create_test_set(self, covid_rem_df):
+        '''
+        ==Function==
+        Split data into train(80%) and test(20%) dataframes 
+        
+        ==Returns==
+        test dataframe 
+        
+        '''
+        covid_rem_df = self.load_stationary_data()
         te_start,te_end = '2018-06-30','2020-01-31'
-        train_diff0 = cov_rem[tr_start:tr_end]
-        test_diff0 = cov_rem[te_start:te_end]
-        return train_diff0, test_diff0
+        test_diff0 = covid_rem_df[te_start:te_end]
+        return test_diff0
     
-    def grid_search(self, df):
+    def grid_search(self, train_diff0):
         '''
         ==Function==
         Set parameter range
         Find optimized parameters for SARIMAX 
         
         ==Returns==
-        List of all parameter combination
+        List of all parameter combinations
         
         '''
+        train_diff0 = self.create_train_set()
+
         p = range(0,3)
         q = range(1,3)
         d = range(1,2)
@@ -119,16 +142,18 @@ class Model():
         return param_results
 
 
-    def evaluate_sarimax_model(self,X, sarimax_order):
+    def evaluate_sarimax_model(self, train_diff0):
         '''
         ==Function ==
         Pushes through SARIMAX models 
         ==Returns==
-        MSE
+        RMSE
         '''
+        train_diff0 = self.create_train_set()
         mod = sm.tsa.statespace.SARIMAX(train_diff0, order=(0, 1, 2), seasonal_order=(2, 1, 1, 4))
         results = mod.fit(disp=False)
         predictions = results.predict(start=78, end=97)
+        predictions['Actual'] = train_diff0['avg_kwh_capita']
         error=rmse(predictions['predicted_mean'], predictions['Actual'])
         return error
     
@@ -141,7 +166,8 @@ class Model():
         '''
         #train_test_split with difference = 0
         
-        train_diff0, test_diff0 = self.train_test()
+        train_diff0 = self.create_train_set()
+        test_diff0 = self.create_test_test()
         
         # Create and fit model using optimized parameters 
         mod = sm.tsa.statespace.SARIMAX(train_diff0, order=(0, 1, 2), seasonal_order=(2, 1, 1, 4))
@@ -171,7 +197,7 @@ class Model():
         #===Plot
         predictions['Actual'].plot(figsize=(20,8), legend=True, color='blue')
         predictions['predicted_mean'].plot(legend=True, color='red', figsize=(20,8))
+        
         show.plt()
 
-if __name__ == "__main__":
-    Model().show_model(df)
+    # if __name__ == "__main__":

@@ -32,11 +32,6 @@ class Prep():
     create target variable, kWH_per_capita 
     kWH_per_capita  = average monthly kWH consumption / population of consumption year
     
-    == Stationarity==
-    Uses ADFuller method to test for stationarity.
-    If data is not stationary, uses differencing to achieve stationarity.
-    Completes ADF testing again
-    
     compile
     ==Returns==
     Stationary dataframe 
