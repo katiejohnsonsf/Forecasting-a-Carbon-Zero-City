@@ -30,40 +30,76 @@ Predicting individual and aggregate reduction benchmarks could help expand inves
 
 ## Variable Creation
 
-Combining data into a single dataframe, I started by aggregating electrical consumption from individual addresses to find the average electrical consumption for each month for the city for each month since January 2012. Using Pandas groupby() and .mean(), I found 106 monthly values. I normalized the monthly average consumption by Gainesville's population each year to get my target variable, monthly average electrical consumption per capita.
+Combining data into a single dataframe, I started by aggregating electrical consumption from individual addresses to find the average electrical consumption for each month for the city for each month since January 2012. Using Pandas groupby() and .sum(), I found 106 monthly values. I normalized the city's total consumption for each month by Gainesville's population each year to get my target variable, monthly average electrical consumption per capita. Below are the summary statistics and the plotted target values:
+
+<br>
+
+### Summary Statistics for target variable (monthly kwh / capita)
+<br>
+
+|       | avg_kwh_capita 
+| :---        |    :----:  
+| Count      | 106  
+| Mean   | 1058.96 
+| Std   | 270.92
+| Min | 8.90     
+| Max   | 1699.58  
+
+<br>
+
+### Plotted target values
  
 ![Avg Monthly kWh per Capita](images/kWh_per_capita.png)
  
-Charting electrical consumption above shows a seasonal pattern and large spike at the start of the COVID pandemic. Both of these time index dependencies must be removed to create a set of stationary observations so that summary statistics are consistent over time.
+Charting electrical consumption above shows a seasonal pattern and large drop at the start of the COVID pandemic. Both of these time index dependencies must be removed to create a set of stationary observations.
 <br>
 ![Avg Monthly kWh per Capita](images/med_count_hist.png)
 <br>
-The COVID anomaly is also apparent by looking at this histogram showing counts for each electrical consumption value, which are in two distinct groups. The COVID values lie completely outside of the Gaussian distribution of the rest of the data.
+The COVID anomaly is also apparent by looking at this histogram showing counts for each electrical consumption value, which are in two distinct groups. The COVID values lie completely outside of the Gaussian distribution of the rest of the data.      
  
 <br>
  
 ## Box-Jenkins Method Stationary Process
  
-By removing the observation in the data during the COVID pandemic, I can achieve better stationarity in my data. To validate this, I used the Augmented Dickey-Fuller test to find p-values for my data before and after removing COVID dates:
+By removing the observations in the data that occured during the COVID pandemic, I can achieve better stationarity in my data. To validate this, I used the Augmented Dickey-Fuller (ADF) test to find p-values for my data before and after removing COVID dates.
  
-Before removing COVID data P-value: 0.562681
- 
-After removing COVID data P-value: 0.240378
+ <br>
 
+ ### ADF P-value with and without COVID observations
 
+| with COVID | without COVID     |
+| :---        |    :----:   |   
+| 0.563      | 0.240  |
+
+ <br>
  
 While not within the 0.05 threshold yet for stationarity, removing observations during COVID significantly improved P-value.
  
 I also checked how transforming my data using a log transform would impact my stationarity. It slightly increased my P-value from 0.240378 to 0.289347 so I did not use the log transform.
+
 <br>
- 
+ Finally, I took the first and second difference of the data and ran an ADF test on each as well as for two regression orders. Here are the p-values for each:  
+  <br>
+  <br>
+
+| Regression Order      | Diff 1 | Diff 2     |
+| :---        |    :----:   |          ---: |
+| c      | 0.180      | 2.552e-16  |
+| ctt   | 0.620       | 1.113e-13e      |
+
+ <br>
+
+The data that was diffed twice is stationary with slightly better performance with a constant regression order.
+
+ <br>
+
 ### Seasonal Decomposition
  
-To get a clearer look at the data, I used seasonal_decompose() method. This generates four graphs: Observed, Trend, Seasonal, Residual. Looking at the graphs, the seasonal pattern is apparent. For the period parameter, I selected 12 because the sampling frequency is monthly (taken 12 times per year) over eight years.
+To get a clearer look at the data, I used seasonal_decompose() method. This generates four graphs: Observed, Trend, Seasonal, Residual. Looking at the graphs, the seasonal pattern is apparent. For the period parameter, I selected 12 because the sampling frequency is monthly (taken 12 times per year) over eight years. The residuals seem to be randomly distributed meaning that my data is stationary. 
  
 <br>
  
-![Decomposition](images/seas_decomp.png)
+![Decomposition](images/diffed_seas_decomp.png)
  
 ### Assumptions
  
@@ -74,31 +110,32 @@ Energy efficiency improvement and renewable energy transition rates will be cons
  
 ## Model
  
-### SARIMAX
+### SARIMA
  
-Since my data has a strong seasonal component, I used the Seasonal AutoRegressive Integrated Moving Average with exogenous regressors model, which includes a parameter for seasonal legnth. This allows the model to achieve better stationarity without further manual transformations. For the initial project phase, the exogenous regressors parameter is None. 
+Since my data has a strong seasonal component, I used the Seasonal AutoRegressive Integrated Moving Average model, which includes a parameter for seasonal legnth. This allows the model to achieve better stationarity without further manual transformations. 
  
 <br>
  
-![SARIMAX AC and PAC functions](images/AC_PAC_functions.png)
+![SARIMA AC and PAC functions](images/AC_PAC_functions.png)
 
-I found the autocorrelation and partial autocorrelation to get a rough sense for the complexity of my model for estimating a range for my parameters for grid search. 
+I found the autocorrelation and partial autocorrelation to get a rough sense for the complexity of my model for estimating a range of parameters for grid search. 
  
 <br>
  
 ### Grid Search for Optimizing SARIMAX Parameters
-I used GridSearch to iterate through possible values for the following SARIMAX parameters both non-seasonal (lower case) and seasonal (uppercase):
+I used GridSearch to iterate through possible values for the following SARIMA parameters both non-seasonal (lower case) and seasonal (uppercase):
 * p, P (autoregressive terms)
 * d, D (differencing needed to reach stationarity)
 * q, Q (number of moving average terms - e.g. lags of the forecast errors)
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 1),(2, 1, 1, 4) with an AIC of -765.112.
+The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 2),(1, 1, 2, 6)) with an AIC of -716.781.
+
  
 <br>
  
-![Performance of SARIMAX Model](images/test_pred_plot.png)
+![Performance of SARIMA Model](images/test_pred_plot.png)
 
  
 <br>
@@ -121,8 +158,7 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 ## Model Evaluation
  
 ### SARIMAX 
-* Not diffed data AIC: -765.112
-* Diffed data AIC: -765.112
+AIC: -716.781
 * MSE - 0.0022
 <br>
  
