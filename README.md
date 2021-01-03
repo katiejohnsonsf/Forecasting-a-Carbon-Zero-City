@@ -130,7 +130,7 @@ I used GridSearch to iterate through possible values for the following SARIMA pa
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 2),(1, 1, 2, 6)) with an AIC of -716.781.
+The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 2),(2, 1, 1, 4)) with an AIC of -754.061.
 
  
 <br>
@@ -145,20 +145,20 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 
  <br>
 
-![Prediction to 2035](images/pred_plot.png)
+![Prediction to 2035](images/pred_plot_diffed.png)
 
-![Prediction to 2035 with Confidence Intervals](images/zoom_out_ci.png)
+![Prediction to 2035 with Confidence Intervals](images/zoom_out_ci_diffed.png)
 
 ### Monthly Electrical Consumption Forecast within the Nearer Term: More Reasonable
 
 <br>
 
-![Prediction to 2022](images/2022_pred.png)
+![Prediction to 2022](images/pred_2022_diffed.png)
  
 ## Model Evaluation
  
 ### SARIMAX 
-AIC: -716.781
+AIC: -754.061
 * MSE - 0.0022
 <br>
  
