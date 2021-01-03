@@ -161,18 +161,24 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 AIC: -754.061
 * MSE - 0.0022
 <br>
+
+## Forecast of Business as Usual Carbon Emissions per Capita
+
+![Prediction of emission to 2022](images/BAU_pred_emissions_2022.png)
+
+## Forecast of Business as Usual Cost of Grid-electricity per Capita
+
+![Prediction of cost to 2022](images/BAU_pred_cost_2022.png)
  
 ## Next Steps
  
-To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I will use Judgmental adjustments from an analogue city where there has been more research with some data available. These adjustments are based on projections for Bellingham, WA, which is approximately the same size as Gainesville.
- 
-### Possible Limitations of Judgemental Adjustments
- 
-Using judgemental adjustments about carbon reductions may not apply to Gainesville so a better analogue may yield better results. Additionally, Bellingham's projections may not be accurate making it a weak signal for forecasting. 
- 
-The scheme below shows how judgemental adjustments are used in the model: judgemental adjustments are shown by the green diamonds, pink squares indicate electrical data, and purple items show the elements calculated from the observed data.
- 
+To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I will use Judgmental adjustments needed to reduce this emissions source to zero by the goal period.
+
+
 ### Summary of Forecast Process
+
+ The scheme below shows how judgemental adjustments are used in the model: judgemental adjustments are shown by the green diamonds, pink squares indicate electrical data, and purple items show the elements calculated from the observed data.
+ 
  
 ![Scheme](images/scheme.png)
  
