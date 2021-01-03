@@ -130,13 +130,20 @@ I used GridSearch to iterate through possible values for the following SARIMA pa
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 2),(2, 1, 1, 4)) with an AIC of -754.061.
+The GridSearch combination with the lowest AIC of -754.061 (indicating the strength of the model) was: 
 
- 
+| Parameter| Optimized value     |
+| :---        |    :----:   |   
+| autoregressive terms (p, P)      | 0, 2  |
+| differencing needed to reach stationarity | 1, 1  |
+| number of moving average terms     | 2, 1  |
+| seasonal length in the data      | 4  |
 <br>
- 
-![Performance of SARIMA Model](images/test_pred_plot.png)
 
+Here's how it looks in code form 
+```
+ SARIMAX(0, 1, 2),(2, 1, 1, 4)) 
+ ```
  
 <br>
  
