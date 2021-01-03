@@ -49,11 +49,11 @@ Combining data into a single dataframe, I started by aggregating electrical cons
 
 ### Plotted target values
  
-![Avg Monthly kWh per Capita](images/kWh_per_capita.png)
+![Avg Monthly kWh per Capita](images/kWh_per_capita_diff.png)
  
 Charting electrical consumption above shows a seasonal pattern and large drop at the start of the COVID pandemic. Both of these time index dependencies must be removed to create a set of stationary observations.
 <br>
-![Avg Monthly kWh per Capita](images/med_count_hist.png)
+![Avg Monthly kWh per Capita](images/med_count_hist_diff.png)
 <br>
 The COVID anomaly is also apparent by looking at this histogram showing counts for each electrical consumption value, which are in two distinct groups. The COVID values lie completely outside of the Gaussian distribution of the rest of the data.      
  
@@ -93,7 +93,7 @@ The data that was diffed twice is stationary with slightly better performance wi
 
  <br>
 
-### Seasonal Decomposition
+## Seasonal Decomposition
  
 To get a clearer look at the data, I used seasonal_decompose() method. This generates four graphs: Observed, Trend, Seasonal, Residual. Looking at the graphs, the seasonal pattern is apparent. For the period parameter, I selected 12 because the sampling frequency is monthly (taken 12 times per year) over eight years. The residuals seem to be randomly distributed meaning that my data is stationary. 
  
@@ -101,7 +101,7 @@ To get a clearer look at the data, I used seasonal_decompose() method. This gene
  
 ![Decomposition](images/diffed_seas_decomp.png)
  
-### Assumptions
+## Assumptions
  
 The EPA egrid sites Carbon intensity for all of Florida (including Gainesville) as:<br>
 931.84 lb/MWh
@@ -130,7 +130,7 @@ I used GridSearch to iterate through possible values for the following SARIMA pa
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 2),(1, 1, 2, 6)) with an AIC of -716.781.
+The GridSearch combination with the lowest AIC (indicating the strength of the model) was SARIMAX(0, 1, 2),(2, 1, 1, 4)) with an AIC of -754.061.
 
  
 <br>
@@ -145,20 +145,20 @@ The GridSearch combination with the lowest AIC (indicating the strength of the m
 
  <br>
 
-![Prediction to 2035](images/pred_plot.png)
+![Prediction to 2035](images/pred_plot_diffed.png)
 
-![Prediction to 2035 with Confidence Intervals](images/zoom_out_ci.png)
+![Prediction to 2035 with Confidence Intervals](images/zoom_out_ci_diffed.png)
 
 ### Monthly Electrical Consumption Forecast within the Nearer Term: More Reasonable
 
 <br>
 
-![Prediction to 2022](images/2022_pred.png)
+![Prediction to 2022](images/pred_2022_diffed.png)
  
 ## Model Evaluation
  
 ### SARIMAX 
-AIC: -716.781
+AIC: -754.061
 * MSE - 0.0022
 <br>
  
