@@ -73,12 +73,8 @@ class Model():
     
    '''
     
-    def __init__(self):
-        self.self = self
-        self.files = ['stationary-data/diffed_data.csv']
-    
-    def load_stationary_data(self):
-        diffed = pd.read_csv('./stationary-data/diffed_data.csv')
+    def load_stationary_data(self, filepath):
+        diffed = pd.read_csv(filepath)
         return diffed
     
     def create_train_set(self, diffed):
@@ -172,68 +168,56 @@ class Model():
     def plot_SARIMAX_pred(self):
         '''
         ==Function==
-        Creates a subplot from the SARIMAX Model:
+        Creates a plot of electricity consumption predictions from the SARIMAX Model:
             [1] depicting forecasts
             [1] associated residual distribution plots
         '''
-        #train_test_split with difference = 0
+        #train_test_split 
         
         train = self.create_train_set()
         test = self.create_test_test()
-        
-        # Create and fit model using optimized parameters 
-        mod = sm.tsa.statespace.SARIMAX(train, order=(0, 1, 2), seasonal_order=(2, 1, 1, 4))
-        results = mod.fit()
-        
-        # Create predictions from model 
-        predictions = results.predict(start=78, end=97)
-        act = pd.DataFrame(test_diff0)
-        predictions=pd.DataFrame(predictions)
-        predictions.reset_index(drop=True, inplace=True)
-        predictions.index=test.index
-        predictions['Actual'] = act['avg_kwh_capita']
-        predictions.rename(columns={1:'Pred'}, inplace=True)
 
-        #create dictionary of dates and predictions to plot
-        index = pd.date_range(start='2020-02-28', end='2035-02-28', freq='M')
-        columns = ['pred_kwh']
-        future_kwh = pd.DataFrame(index=index, columns=columns)
+        # Train a SARIMAX model with observed values 
+        e_consum_model = sm.tsa.statespace.SARIMAX(future_kwh, order=(0, 1, 2), seasonal_order=(2, 1, 1, 4)).fit()
 
-        pred_dict = {}
-        for i, date in enumerate(future_kwh.index):
-            pred_dict[date] = predictions.iloc[i]
-        future_kwh['pred_kwh'] = pd.Series(pred_dict)
-        future_kwh['pred_kwh'].plot(legend=True, color='red', figsize=(20,8))
-        plt.show() 
 
-        #===Plot
-        predictions['Actual'].plot(figsize=(20,8), legend=True, color='blue')
-        predictions['predicted_mean'].plot(legend=True, color='red', figsize=(20,8))
-        
-        show.plt()
+        # specify number of forecasts
+        preds = e_consum_model.get_prediction(start='2018-01-31', end='2022-01-31', dynamic=False)
+        pred_ci = preds.conf_int()
+        pred_ci = preds.conf_int()
+
+
+        ax = future_kwh['2018-01-31': '2022-01-31'].plot(label='observed')
+        preds.predicted_mean.plot(ax=ax, label='Forecast', alpha=.8, figsize=(15, 7))
+        ax.fill_between(pred_ci.index,
+                        pred_ci.iloc[:, 0],
+                        pred_ci.iloc[:, 1], facecolor='green', alpha=0.1)
+
+        ax.set_title("Forecast of Monthly Avg Electrical Consumption per Capita: Gainesville, FL", fontsize=18)
+        ax.set_xlabel('Date', fontsize='x-large')
+        ax.set_ylabel('Avg monthly kwh consumed', fontsize='x-large')
+        plt.legend(['Observed', 'Predicted', '95% Confidence Interval'], loc=3, fontsize='large')
+
+        fig1 = plt.gcf()
+        plt.savefig('images/pred_2022_diffed.png')
+        plt.show()
+        plt.draw()
+
 
 if __name__ == "__main__":
 
-    # load staionary data
-    load_stationary_data(self)
-
-    # create train data 
+    # variables below
+    filepath = './stationary-data/diffed_data.csv'
+    start = '2020-02-28'
+    end = '2035-02-28'
+    actual = act['avg_kwh_capita']
+    
+    # functions for testing
+    load_stationary_data(self, filepath)
     create_train_set(self, diffed)
-
-    # create test data 
-    create_test_set(self, diffed)
-
-    # find optimal parameters for SARIMA model with lowest AIC 
+    create_test_set(self, diffed) 
     grid_search(self, train)
-
-    # load undiffed consumption data from EDA notebook (not diffed)
     load_orig_data(self)
-
-    # Generate np.array with inverse diff
     undiffed_preds = inv_diff(cov_rem['avg_kwh_capita'], predictions['predicted_mean'], 12)
-
-    # Evaluate model
     evaluate_sarimax_model(self, train)
-
-    # plot predicted and actual values with 
     plot_SARIMAX_pred(self)
