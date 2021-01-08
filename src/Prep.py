@@ -6,7 +6,7 @@ from statsmodels.tsa.stattools import adfuller
 # =============================================================================
 # DF PREP
 # =============================================================================
-class Prep:
+class Prep():
     '''
     ==Function==
     Prepare electrical consumption data for time series analysis 
@@ -53,14 +53,11 @@ class Prep:
         return kwh_df
 
     def monthly_mean(self, kwh_df):
-        kwh_df = self.load_kwh_df()
         print(' 3 of 7 |    Grouping by monthly average kWH consumption')
         kwh_df = kwh_df.groupby('Date', dropna=True, sort=True).mean()
         return kwh_df
 
     def join_dataframes(self, population_df, kwh_df):
-        population_df = self.load_pop_df()
-        kwh_df = self.monthly_mean()
         print(' 4 of 7 |    Joining kWH and popluation dataframes')
         pop_e_df = kwh_df.join(population_df.set_index('Date'), how='left', lsuffix='_left', rsuffix='_right')
         pop_e_df = pop_e_df.drop('Year_right', axis=1)
@@ -68,35 +65,31 @@ class Prep:
         return pop_e_df
 
     def target_variable(self, pop_e_df, targ_col_name):
-        pop_e_df = self.join_dataframes()
         print(' 5 of 7 |    Creating target variable: avg_kwh_capita')
         pop_e_df['avg_kwh_capita'] = pop_e_df['KWH Consumption'] / pop_e_df['Population']
         return pop_e_df
 
-    def rem_covid_dates(self, pop_e_df, data_start, cov_start):
-        pop_e_df = self.target_variable()
+    def rem_covid_dates(self, pop_e_df):
         print(' 6 of 7 |    Removing COVID dates')
-        cov_rem = pop_e_df[targ_col_name][data_start:cov_start]
+        cov_rem = pop_e_df[targ_col_name][96:]
         return cov_rem
 
     def diff_twice(self, cov_rem):
-        cov_rem = self.rem_covid_dates()
         print(' 7 of 7 |    Taking second difference to stationize')
         diffed = cov_rem.diff().diff().dropna()
         return diffed
 
 if __name__ == "__main__":   
+
     p = Prep()
 
     # Variables
     filepath_pop = '../data/population.csv'
     filepath_kwh = '../data/GRU_Customer_Electric_Consumption.csv'
     targ_col_name = 'avg_kwh_capita'
-    data_start, cov_start = '2012-01-31','2020-01-31'
+    
     
     # function for testing
-
-    
 
     # read in population data for the city of Gainesville
     pop_data_load = p.load_pop_df(filepath_pop)
@@ -105,23 +98,23 @@ if __name__ == "__main__":
     kwh_load = p.load_kwh_df(filepath_kwh)
 
     # Groupby date of electrical consumption and aggregate values by mean for each date
-    get_avg = p.monthly_mean(kwh_df)
+    get_avg = p.monthly_mean(kwh_load)
 
     # join the popluation dataframe with the average monthly dataframe
-    join_pop_kwh = p.join_dataframes(population_df, kwh_df)
+    join_pop_kwh = p.join_dataframes(pop_data_load, kwh_load)
 
     # Create a feature column for monthly average consumption per capita
-    avg_consum = p.target_variable(pop_e_df, targ_col_name)
+    avg_consum = p.target_variable(join_pop_kwh, targ_col_name)
      
     # remove COVID dates
-    rem_covid = p.rem_covid_dates(targ_col_name, data_start, cov_start)
+    rem_covid = p.rem_covid_dates(avg_consum)
 
     # take second difference to make data stationary 
-    stationize = p.diff_twice(cov_rem)
+    stationize = p.diff_twice(rem_covid)
 
-    # print results
-    print(f"Population filepath: {filepath_pop}")
-    print(f"kwh filepath: {filepath_kwh}.")
-    print(f"target variable: {pop_e_df}.")
-    print(f"Remove COVID anomaly: {cov_rem}")
-    print(f"Make stationary: {cov_rem}")
+    # # print results
+    # print(f"Population filepath: {filepath_pop}")
+    # print(f"kwh filepath: {filepath_kwh}.")
+    # print(f"target variable: {pop_e_df}.")
+    # print(f"Remove COVID anomaly: {cov_rem}")
+    # print(f"Make stationary: {cov_rem}")
