@@ -130,19 +130,19 @@ I used GridSearch to iterate through possible values for the following SARIMA pa
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC of -754.061 (indicating the strength of the model) was: 
+The GridSearch combination with the lowest AIC of 631.922 (indicating the strength of the model) was: 
 
 | Parameter| Optimized value     |
 | :---        |    :----:   |   
-| autoregressive terms (p, P)      | 0, 2  |
-| differencing needed to reach stationarity | 1, 1  |
+| autoregressive terms (p, P)      | 0, 0  |
+| differencing needed to reach stationarity | 1, 2  |
 | number of moving average terms     | 2, 1  |
-| seasonal length in the data      | 4  |
+| seasonal length in the data      | 12  |
 <br>
 
 Here's how it looks in code form 
 ```
- SARIMAX(0, 1, 2),(2, 1, 1, 4)) 
+SARIMA(0, 1, 2),(0, 2, 1, 12)
  ```
  
 <br>
@@ -176,7 +176,45 @@ AIC: -754.061
 ## Forecast of Business as Usual Cost of Grid-electricity per Capita
 
 ![Prediction of cost to 2022](images/BAU_pred_cost_2022.png)
- 
+
+
+### Regression Model for Predicting Prioritizing Energy Efficiency Opportunities
+
+<br>
+
+### EDA and data cleaning for building data
+<br>
+
+### Building Data Sources: 
+
+#### City of Gainesville Building Permitting data
+* Parcel Number
+
+#### Alachua Country Property Appraiser Improvement data
+* Effective_YrBlt
+* Heated_SquareFeet
+
+
+### Features used for training
+
+* Parcel Number
+* Heated_SquareFeet
+* average khw per month
+* kwh per sqft 
+
+#### Model Evaluation
+
+| Regression Model| Performance (MSE)     |
+| :---        |    :----:   |   
+| Linear      | 12.468  |
+| Lasso | 11.926  |
+| Ridge     | 12.468 |
+| KNN      | 6.987  |
+| OLS      | 11.637 |
+| Random Forest      | 8.489  |
+
+<br>
+
 ## Next Steps
  
 To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I will use Judgmental adjustments needed to reduce this emissions source to zero by the goal period.
