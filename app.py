@@ -6,7 +6,7 @@ import plotly.express as px
 
 import pandas as pd
 
-df_ts = pd.read_csv('stationary-data/undiffed_preds_full.csv')
+df_ts = pd.read_csv('stationary-data/all_df.csv')
 df_ro = pd.read_csv('stationary-data/preds_min_df.csv')
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -32,8 +32,8 @@ app.layout = html.Div([
 def update_figure(selected_phase):
     filtered_df = df_ts[df_ts.phase == selected_phase]
 
-    fig = px.line(filtered_df, x="Date", y="avg_kwh_capita",
-                  hover_name="avg_kwh_capita")
+    fig = px.line(filtered_df, x="Date", y="kwh avg",
+                  hover_name="kwh avg")
 
     fig.update_layout(transition_duration=500)
 
