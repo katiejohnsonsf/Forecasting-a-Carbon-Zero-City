@@ -169,25 +169,26 @@ AIC: 627.257
 <br>
 
 
-## Regression Model for Predicting Prioritizing Energy Efficiency Opportunities
-
+## Regression Model for Predicting Energy Efficiency Opportunity
 <br>
 
-### EDA and data cleaning for building data
+## EDA and data cleaning for building data
 <br>
 
 ### Building Data Sources: 
 
-#### City of Gainesville Building Permitting data
+City of Gainesville Building Permitting data
 * Latitude
 * Longitude
 
-#### City of Gainesville
+City of Gainesville
 * monthly kwh consumption
 
-#### Alachua Country Property Appraiser Improvement data
+Alachua Country Property Appraiser Improvement data
 * Effective_YrBlt
 * Heated_SquareFeet
+
+<br>
 
 ### Features used for training
 
@@ -201,11 +202,11 @@ Rows of data after joining: 10,838
 
 ## EDA of building data
 
-To explore to 10,838 properties, I plotted the count of buildings by effective year built. This shows a large spike in construction during the '80's with gradual decrease sinse.
+To explore to 10,838 properties, I plotted the count of buildings by effective year built. This shows a large spike in construction during the '80's with gradual decrease since.
 
 ![Prediction of cost to 2022](images/building_count_by_year.png)
 
-To look at the over energy efficiency of the properties, I created a feature for kwh / heated square feet. Plotting this feature against effective data built shows peak consumption during the 80's and 90's with a decrease since.
+To look at the overall energy efficiency of the properties, I created a feature for kwh / heated square feet. This plot shows efficiency for year built, which shows peak consumption during the 80's and 90's with a decrease since.
 
 ![Prediction of cost to 2022](images/efficiency_over_time.png)
 
@@ -261,9 +262,9 @@ This feature has a high positive effect on predictions. It is somewhat surprisin
 
 ## Building Efficiency Predictions
 
-From the 5,384 properties, this plot shows the distribution of efficiency performance relative to the efficiency standards when the building was built.
+This plot shows the distribution of efficiency performance of 5,384 properties relative to efficiency standards when each was built.
 
-When the predicted building code release is earlier than the actual, the residual is a positive value. Positive residuals in this plot indicate there may be an opportunity for energy efficiency professionals to have a bigger impact.
+When the predicted building code release is less than the actual, the residual is a positive value. Positive residuals in this plot indicate there may be an opportunity for energy efficiency professionals to have a bigger impact because the building is predicted to be performing at a lower standard than was used in its construction.
 
 ![Prediction of cost to 2022](images/efficiency_values_dist.png)
 
@@ -271,11 +272,11 @@ When the predicted building code release is earlier than the actual, the residua
 
 This application shows a 4-part rollout of the predicted energy efficiency improvements and how they impact monthly average kwh per capita. 
 
-In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might make progress towards and track progress towards a carbon zero by 2035 goal. 
+In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might track progress and plan improvements for reaching a carbon zero by 2035 goal. 
 
-<br>
 [insert link]
 <br>
+
 
 ## Next Steps
 
