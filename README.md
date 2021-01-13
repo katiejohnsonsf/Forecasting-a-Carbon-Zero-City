@@ -165,7 +165,7 @@ SARIMA(0, 1, 2),(0, 2, 1, 12)
 ## Model Evaluation
  
 ### SARIMAX 
-AIC: -754.061
+AIC: 627.257
 * MSE - 0.0022
 <br>
 
