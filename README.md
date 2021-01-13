@@ -228,11 +228,32 @@ Out of six models, Random Forest was has the lowest MSE of 8.489.
 
 ## Feature Importance
 
-From the Random Forest regressor, plotting shap values show location information had the largest impact on predictions. 
+From the Random Forest regressor, plotting shap values shows that location information had the largest impact on predictions. 
 
 ![Prediction of cost to 2022](images/shap_values.png)
 
-Looking at a more detailed description latitude has variable impact on the code release year prediction. 
+<b>Latitude</b>
+
+Looking at a more detailed description of feature importance, latitude has a variable impact on the code release year prediction - having both high and low effects in both the positive and negative directions. North and South, there are no consistent efficiency patterns showing up in this data.
+<br>
+
+<b>Longitude</b>
+
+However, the impact of longitude might be the most suprising having low positive impact and mostly a high negative effect. The further west the building is, the lower the predicted code release year. Perhaps this is caused by the development patterns where the Eastern part of the city contains more new housing.
+<br>
+
+<b>Heated Square Feet</b>
+
+Next to location, this feature has the next largest impact. It has a high positive impact and lower negative impact. This is slightly surprising. One explaination might be that larger buildings are generally newer and, therefore, more efficient.
+<br>
+
+<b>Kwh per squarefoot</b>
+
+This feature has a low negative impact on code release year. This might be explained by the inverse relationship with heated square feet.
+
+<b>Avg kwh</b>
+
+This feature has a high positive effect on predictions. It is somewhat surprising that greater consumption increases the efficiency standard prediction, but its magnitude is still relative small compared to location for impacting predictions.  
 
 ![Prediction of cost to 2022](images/feature_importance_shap.png)
 
@@ -248,7 +269,9 @@ When the predicted building code release is earlier than the actual, the residua
 
 ## Simulating a Carbon Zero City
 
-This application shows a 4-part rollout of the predicted energy efficiency improvements and how they impact the consumption forecast. In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might make progress towards and track progress towards a carbon zero by 2035 goal. 
+This application shows a 4-part rollout of the predicted energy efficiency improvements and how they impact monthly average kwh per capita. 
+
+In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might make progress towards and track progress towards a carbon zero by 2035 goal. 
 
 <br>
 [insert link]
