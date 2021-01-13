@@ -130,11 +130,11 @@ I used GridSearch to iterate through possible values for the following SARIMA pa
 * s (seasonal length in the data)
 <br>
  
-The GridSearch combination with the lowest AIC of 631.922 (indicating the strength of the model) was: 
+The GridSearch combination with the lowest AIC of 627.256 (indicating the strength of the model) was: 
 
 | Parameter| Optimized value     |
 | :---        |    :----:   |   
-| autoregressive terms (p, P)      | 0, 0  |
+| autoregressive terms (p, P)      | 0, 2  |
 | differencing needed to reach stationarity | 1, 2  |
 | number of moving average terms     | 2, 1  |
 | seasonal length in the data      | 12  |
@@ -142,7 +142,7 @@ The GridSearch combination with the lowest AIC of 631.922 (indicating the streng
 
 Here's how it looks in code form 
 ```
-SARIMA(0, 1, 2),(0, 2, 1, 12)
+SARIMA(0, 1, 2),(2, 2, 1, 12)
  ```
  
 <br>
@@ -169,16 +169,8 @@ AIC: 627.257
 * MSE - 0.0022
 <br>
 
-## Forecast of Business as Usual Carbon Emissions per Capita
 
-![Prediction of emission to 2022](images/BAU_pred_emissions_2022.png)
-
-## Forecast of Business as Usual Cost of Grid-electricity per Capita
-
-![Prediction of cost to 2022](images/BAU_pred_cost_2022.png)
-
-
-### Regression Model for Predicting Prioritizing Energy Efficiency Opportunities
+## Regression Model for Predicting Prioritizing Energy Efficiency Opportunities
 
 <br>
 
@@ -188,19 +180,32 @@ AIC: 627.257
 ### Building Data Sources: 
 
 #### City of Gainesville Building Permitting data
-* Parcel Number
+* Latitude
+* Longitude
+
+#### City of Gainesville
+* monthly kwh consumption
 
 #### Alachua Country Property Appraiser Improvement data
 * Effective_YrBlt
 * Heated_SquareFeet
 
-
 ### Features used for training
 
-* Parcel Number
+* Latitude
+* Longitude
 * Heated_SquareFeet
 * average khw per month
 * kwh per sqft 
+
+Rows of data after joining: 10,838
+
+## EDA of building data
+
+![Prediction of cost to 2022](images/building_count_by_year.png)
+
+
+![Prediction of cost to 2022](images/efficiency_over_time.png)
 
 #### Model Evaluation
 
@@ -215,17 +220,17 @@ AIC: 627.257
 
 <br>
 
+## Building Efficiency Predictions
+
+From the 5,384 properties, this plot shows the distribution of buildings that are performing better or worse than the expected efficiency based on the building codes the year they were built.
+
+When the actual code release is less than the predicted efficiency value then the residual is a negative value. This indicates that the building is less efficient than expected given the efficiency standards the year it was built. This indicates there may be an opportunity for energy efficiency professionals to have a bigger impact.
+
+![Prediction of cost to 2022](images/efficiency_values_dist.png)
+
 ## Next Steps
- 
-To project the impact of energy efficiency improvements and expanding renewable energy supply on electrical consumption, I will use Judgmental adjustments needed to reduce this emissions source to zero by the goal period.
 
-
-### Summary of Forecast Process
-
- The scheme below shows how judgemental adjustments are used in the model: judgemental adjustments are shown by the green diamonds, pink squares indicate electrical data, and purple items show the elements calculated from the observed data.
- 
- 
-![Scheme](images/scheme.png)
+As next step, I'm interested in expanding efficiency-related data.Analyzing residential, commercial and industrial properties separately with property type-specific efficiency indicators would add more precision to predictions.
  
 Looking past electrical emissions reductions, incorporating emissions data from other emissions sources would help to complete the full carbon zero forecast. These emissions sources include transportation, agriculture, industry, waste stream and energy production.
  
