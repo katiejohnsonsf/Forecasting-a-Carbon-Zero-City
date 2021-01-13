@@ -2,7 +2,7 @@
  
 ![Carbon Zero City Map](images/CO20_map.jpg)
  
-## Data
+## Forecast Data
  
 My focus was on electrical consumption data from the City of Gainesville website. The data contains over 9 million records dating from 2012 to September 2020. Covering these 8 years, the dataset includes monthly electricity use at all addresses in Gainesville. The data also contains latitude and longitude for each address.
 <br>
@@ -166,7 +166,6 @@ SARIMA(0, 1, 2),(2, 2, 1, 12)
  
 ### SARIMAX 
 AIC: 627.257
-* MSE - 0.0022
 <br>
 
 
@@ -202,12 +201,19 @@ Rows of data after joining: 10,838
 
 ## EDA of building data
 
+To explore to 10,838 properties, I plotted the count of buildings by effective year built. This shows a large spike in construction during the '80's with gradual decrease sinse.
+
 ![Prediction of cost to 2022](images/building_count_by_year.png)
 
+To look at the over energy efficiency of the properties, I created a feature for kwh / heated square feet. Plotting this feature against effective data built shows peak consumption during the 80's and 90's with a decrease since.
 
 ![Prediction of cost to 2022](images/efficiency_over_time.png)
 
-#### Model Evaluation
+## Model Selection
+
+To generate predictions, I split data 50/50 into training and test sets to maximize the number of predictions from unseen data. 
+
+Out of six models, Random Forest was has the lowest MSE of 8.489. 
 
 | Regression Model| Performance (MSE)     |
 | :---        |    :----:   |   
@@ -220,13 +226,33 @@ Rows of data after joining: 10,838
 
 <br>
 
+## Feature Importance
+
+From the Random Forest regressor, plotting shap values show location information had the largest impact on predictions. 
+
+![Prediction of cost to 2022](images/shap_values.png)
+
+Looking at a more detailed description latitude has variable impact on the code release year prediction. 
+
+![Prediction of cost to 2022](images/feature_importance_shap.png)
+
+<br>
+
 ## Building Efficiency Predictions
 
-From the 5,384 properties, this plot shows the distribution of buildings that are performing better or worse than the expected efficiency based on the building codes the year they were built.
+From the 5,384 properties, this plot shows the distribution of efficiency performance relative to the efficiency standards when the building was built.
 
-When the actual code release is less than the predicted efficiency value then the residual is a negative value. This indicates that the building is less efficient than expected given the efficiency standards the year it was built. This indicates there may be an opportunity for energy efficiency professionals to have a bigger impact.
+When the predicted building code release is earlier than the actual, the residual is a positive value. Positive residuals in this plot indicate there may be an opportunity for energy efficiency professionals to have a bigger impact.
 
 ![Prediction of cost to 2022](images/efficiency_values_dist.png)
+
+## Simulating a Carbon Zero City
+
+This application shows a 4-part rollout of the predicted energy efficiency improvements and how they impact the consumption forecast. In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might make progress towards and track progress towards a carbon zero by 2035 goal. 
+
+<br>
+[insert link]
+<br>
 
 ## Next Steps
 
