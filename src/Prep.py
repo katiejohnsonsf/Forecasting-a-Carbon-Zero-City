@@ -39,55 +39,82 @@ class Prep():
     ==Prints==
     data
     '''
-
-        
-    def __init__(self):
-        self.self = self
-        self.files = ['data/GRU_Customer_Electric_Consumption.csv']
     
-    def load_pop_df(self):
+    def load_pop_df(self, filepath_pop):
         print('PREP'.center(76,'-'))
-        print(" 2 of 6 |    Reading in data \n         |       population.csv")
-        population_df = pd.read_csv('./data/population.csv')
+        print(" 2 of 7 |    Reading in data \n         |       population.csv")
+        population_df = pd.read_csv(filepath_pop)
         return population_df
         
-    def load_kwh_df(self):
+    def load_kwh_df(self, filepath_kwh):
         print('PREP'.center(76,'-'))
-        print(" 1 of 6 |    Reading in data \n         |       GRU_Customer_Electric_Consumption \n         ")
-        kWH_df = pd.read_csv('data/GRU_Customer_Electric_Consumption.csv')
-        return kWH_df
+        print(" 1 of 7 |    Reading in data \n         |       GRU_Customer_Electric_Consumption \n         ")
+        kwh_df = pd.read_csv(filepath_kwh)
+        return kwh_df
 
-    def monthly_mean(self):
-        kWH_df = self.load_kwh_df()
-        print(' 3 of 6 |    Grouping by monthly average kWH consumption')
-        kWH_df = kWH_df.groupby('Date', dropna=True, sort=True).mean()
-        return kWH_df
+    def monthly_mean(self, kwh_df):
+        print(' 3 of 7 |    Grouping by monthly average kWH consumption')
+        kwh_df = kwh_df.groupby('Date', dropna=True, sort=True).mean()
+        return kwh_df
 
-    def join_dataframes(self):
-        population_df = self.load_pop_df()
-        kWH_df = self.monthly_mean()
-        print(' 4 of 6 |    Joining kWH and popluation dataframes')
-        pop_e_df = kWH_df.join(population_df.set_index('Date'), how='left', lsuffix='_left', rsuffix='_right')
+    def join_dataframes(self, population_df, kwh_df):
+        print(' 4 of 7 |    Joining kWH and popluation dataframes')
+        pop_e_df = kwh_df.join(population_df.set_index('Date'), how='left', lsuffix='_left', rsuffix='_right')
         pop_e_df = pop_e_df.drop('Year_right', axis=1)
         pop_e_df = pop_e_df.rename(columns={'Year_left': 'Year'})
         return pop_e_df
 
-    def target_variable(self):
-        pop_e_df = self.join_dataframes()
-        print(' 5 of 6 |    Creating target variable: avg_kwh_capita')
+    def target_variable(self, pop_e_df, targ_col_name):
+        print(' 5 of 7 |    Creating target variable: avg_kwh_capita')
         pop_e_df['avg_kwh_capita'] = pop_e_df['KWH Consumption'] / pop_e_df['Population']
         return pop_e_df
 
-    def rem_covid_dates(self):
-        pop_e_df = self.target_variable()
-        print(' 6 of 6 |    Removing COVID dates')
-        data_start, cov_start = '2012-01-31','2020-01-31'
-        pop_e_df = pop_e_df['avg_kwh_capita'][data_start:cov_start]
-        return pop_e_df
-    
-    def compile(self):
-        pop_e_df = self.rem_covid_dates()
-        return pop_e_df
+    def rem_covid_dates(self, pop_e_df):
+        print(' 6 of 7 |    Removing COVID dates')
+        cov_rem = pop_e_df[targ_col_name][96:]
+        return cov_rem
+
+    def diff_twice(self, cov_rem):
+        print(' 7 of 7 |    Taking second difference to stationize')
+        diffed = cov_rem.diff().diff().dropna()
+        return diffed
 
 if __name__ == "__main__":   
-    pop_e_df = Prep().compile()
+
+    p = Prep()
+
+    # Variables
+    filepath_pop = '../data/population.csv'
+    filepath_kwh = '../data/GRU_Customer_Electric_Consumption.csv'
+    targ_col_name = 'avg_kwh_capita'
+    
+    
+    # function for testing
+
+    # read in population data for the city of Gainesville
+    pop_data_load = p.load_pop_df(filepath_pop)
+    
+    # read in electricity consumption data
+    kwh_load = p.load_kwh_df(filepath_kwh)
+
+    # Groupby date of electrical consumption and aggregate values by mean for each date
+    get_avg = p.monthly_mean(kwh_load)
+
+    # join the popluation dataframe with the average monthly dataframe
+    join_pop_kwh = p.join_dataframes(pop_data_load, kwh_load)
+
+    # Create a feature column for monthly average consumption per capita
+    avg_consum = p.target_variable(join_pop_kwh, targ_col_name)
+     
+    # remove COVID dates
+    rem_covid = p.rem_covid_dates(avg_consum)
+
+    # take second difference to make data stationary 
+    stationize = p.diff_twice(rem_covid)
+
+    # # print results
+    # print(f"Population filepath: {filepath_pop}")
+    # print(f"kwh filepath: {filepath_kwh}.")
+    # print(f"target variable: {pop_e_df}.")
+    # print(f"Remove COVID anomaly: {cov_rem}")
+    # print(f"Make stationary: {cov_rem}")
