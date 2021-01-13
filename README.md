@@ -235,7 +235,7 @@ From the Random Forest regressor, plotting shap values shows that location infor
 
 <b>Latitude</b>
 
-Looking at a more detailed description of feature importance, latitude has a variable impact on the code release year prediction - having both high and low effects in both the positive and negative directions. North and South, there are no consistent efficiency patterns showing up in this data.
+Looking at a more detailed description of feature importance below, latitude has a variable impact on the code release year prediction - having both high and low effects in both the positive and negative directions. North and South, there are no consistent efficiency patterns showing up in this data.
 <br>
 
 <b>Longitude</b>
