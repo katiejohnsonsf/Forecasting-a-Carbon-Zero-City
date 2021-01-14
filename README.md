@@ -218,12 +218,12 @@ Out of six models, Random Forest was has the lowest MSE of 8.489.
 
 | Regression Model| Performance (MSE)     |
 | :---        |    :----:   |   
-| Linear      | 12.468  |
-| Lasso | 11.926  |
-| Ridge     | 12.468 |
-| KNN      | 6.987  |
+| Linear      | 11.929 |
+| Lasso | 12.133  |
+| Ridge     | 11.956 |
+| KNN      | 13.354  |
 | OLS      | 11.637 |
-| Random Forest      | 8.489  |
+| Random Forest      | 8.099  |
 
 <br>
 
