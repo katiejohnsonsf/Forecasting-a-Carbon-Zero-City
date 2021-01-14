@@ -274,13 +274,13 @@ This application shows a 4-part rollout of the predicted energy efficiency impro
 
 In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might track progress and plan improvements for reaching a carbon zero by 2035 goal. 
 
-[insert link]
+[![Simulation of Carbon Zero City](https://j.gifs.com/OMmoKY.gif)](https://vimeo.com/user108223732/review/500521198/9c9e9c5b1f)
 <br>
 
 
 ## Next Steps
 
-As next step, I'm interested in expanding efficiency-related data.Analyzing residential, commercial and industrial properties separately with property type-specific efficiency indicators would add more precision to predictions.
+As next step, I'm interested in expanding efficiency-related data. Analyzing residential, commercial and industrial properties separately with property type-specific efficiency indicators would add more precision to predictions.
  
 Looking past electrical emissions reductions, incorporating emissions data from other emissions sources would help to complete the full carbon zero forecast. These emissions sources include transportation, agriculture, industry, waste stream and energy production.
  

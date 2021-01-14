@@ -15,7 +15,6 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div([
     html.H1(children='Forecasting a Carbon Zero City'),
-    html.P(children='A project by @astateofkate'),
     dcc.Graph(id='graph-with-slider'),
     dcc.Slider(
         id='phase-slider',
@@ -38,7 +37,7 @@ def update_figure(selected_phase):
                   hover_name="kwh avg")
 
     fig.update_layout(transition_duration=500, 
-                      title='Energy Efficiency Improvements Jan 2020-Jan 2022')
+                      title='Energy Efficiency Improvements Jan 2020-Jan 2022 (5,384 / 100,313 properties)')
 
     return fig
 
