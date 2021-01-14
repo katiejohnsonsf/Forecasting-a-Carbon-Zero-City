@@ -214,7 +214,7 @@ To look at the overall energy efficiency of the properties, I created a feature 
 
 To generate predictions, I split data 50/50 into training and test sets to maximize the number of predictions from unseen data. 
 
-Out of six models, Random Forest was has the lowest MSE of 8.489. 
+Out of six models, Random Forest was has the lowest MSE of 8.099. 
 
 | Regression Model| Performance (MSE)     |
 | :---        |    :----:   |   
