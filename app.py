@@ -6,7 +6,7 @@ import plotly.express as px
 
 import pandas as pd
 
-df_ts = pd.read_csv('stationary-data/all_df.csv')
+df_ts = pd.read_csv('stationary-data/all_ci_df.csv')
 df_ro = pd.read_csv('stationary-data/preds_min_df.csv')
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
