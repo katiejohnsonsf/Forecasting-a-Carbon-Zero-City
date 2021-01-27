@@ -190,14 +190,6 @@ Alachua Country Property Appraiser Improvement data
 
 <br>
 
-### Features used for training
-
-* Latitude
-* Longitude
-* Heated_SquareFeet
-* average khw per month
-* kwh per sqft 
-
 Rows of data after joining: 10,838
 
 ## EDA of building data
