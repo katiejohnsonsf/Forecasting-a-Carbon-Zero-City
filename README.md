@@ -212,9 +212,23 @@ To look at the overall energy efficiency of the properties, I created a feature 
 
 ## Model Selection
 
+### Target Variable
+
+The International Code Council releases new building codes in three year cycles. These cycles started in 1927 with 30 release cycles to date. External research on U.S. building codes and EDA of the building data shows consumption per square foot steadily decreasing overtime indicating that a higher code release is a signal for energy efficiency performance. I used the code release number (1-30) as a target for predicting energy efficiency improvement opportunity. 
+
+### Predictor Variables 
+
+I used a corellation matrix to remove colinear features selecting the following five features for training my energy efficiency improvement opportunity prediction model: 
+
+* Latitude
+* Longitude 
+* Heated Square Feet
+* Kwh per square food
+* Avg kwh 
+
 To generate predictions, I split data 50/50 into training and test sets to maximize the number of predictions from unseen data. 
 
-Out of six models, Random Forest was has the lowest MSE of 8.099. 
+After training six models, Random Forest was the best performing with a MSE of 8.099. 
 
 | Regression Model| Performance (MSE)     |
 | :---        |    :----:   |   
@@ -262,7 +276,7 @@ This feature has a high positive effect on predictions. It is somewhat surprisin
 
 ## Building Efficiency Predictions
 
-This plot shows the distribution of efficiency performance of 5,384 properties relative to efficiency standards when each was built.
+This plot shows the distribution of efficiency performance of 5,384 properties relative to efficiency standards when each was built using the residual of actual vs predicted code release. 
 
 When the predicted building code release is less than the actual, the residual is a positive value. Positive residuals in this plot indicate there may be an opportunity for energy efficiency professionals to have a bigger impact because the building is predicted to be performing at a lower standard than was used in its construction.
 
@@ -270,9 +284,9 @@ When the predicted building code release is less than the actual, the residual i
 
 ## Simulating a Carbon Zero City
 
-This application shows a 4-part rollout of the predicted energy efficiency improvements and how they impact monthly average kwh per capita. 
+This application shows a 4-part rollout of the predicted energy efficiency improvements from highest impact to lowest and how each wave of improvements impacts monthly average kwh per capita in Gainesville. 
 
-In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might track progress and plan improvements for reaching a carbon zero by 2035 goal. 
+In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might track progress and plan improvements for reaching a carbon zero by 2035 goal by planning and tracking action in two year intervals. 
 
 [![Simulation of Carbon Zero City](https://j.gifs.com/OMmoKY.gif)](https://vimeo.com/user108223732/review/500521198/9c9e9c5b1f)
 <br>
@@ -280,9 +294,9 @@ In the simulation, the efficiency improvements take place every 6 months between
 
 ## Next Steps
 
-As next step, I'm interested in expanding efficiency-related data. Analyzing residential, commercial and industrial properties separately with property type-specific efficiency indicators would add more precision to predictions.
+As next step, I'm interested in expanding efficiency-related data. Analyzing residential, commercial and industrial properties separately with property type-specific efficiency indicators to further segment the market.
  
-Looking past electrical emissions reductions, incorporating emissions data from other emissions sources would help to complete the full carbon zero forecast. These emissions sources include transportation, agriculture, industry, waste stream and energy production.
+I'm also interested in partnering to model other emissions sources to complete a full carbon zero forecast. These emissions sources include transportation, agriculture, industry, waste stream and energy production.
  
  
 ## Sources
