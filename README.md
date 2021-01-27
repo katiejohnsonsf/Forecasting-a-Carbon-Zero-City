@@ -294,9 +294,9 @@ In the simulation, the efficiency improvements take place every 6 months between
 
 ## Next Steps
 
-As next step, I'm interested in expanding efficiency-related data. Analyzing residential, commercial and industrial properties separately with property type-specific efficiency indicators to further segment the market.
+As a next step, I'm interested in expanding efficiency-related data. Analyzing residential, commercial and industrial properties separately with property type-specific efficiency indicators to further segment the market.
  
-I'm also interested in partnering to model other emissions sources to complete a full carbon zero forecast. These emissions sources include transportation, agriculture, industry, waste stream and energy production.
+I'm also interested in partnering with field experts to model other emissions sources to complete a full carbon zero forecast. These emissions sources include transportation, agriculture, industry, waste stream and energy production.
  
  
 ## Sources
