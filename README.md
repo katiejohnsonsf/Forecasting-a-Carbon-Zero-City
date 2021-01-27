@@ -302,8 +302,9 @@ I'm also interested in partnering with field experts to model other emissions so
 ## Sources
 * U.S. Census Bureau (city population data)
 https://data.census.gov/cedsci/profile?g=1600000US1225175
-* Emissions reduction expert projections (https://carbonneutralbellingham.com/wp1/wp-content/uploads/2020/01/catf_2019_final_report.pdf)
-* Electricity carbon intensity for Gainesville, FL (https://www.epa.gov/egrid/data-explorer)
+* City of Gainesville Electrical Consumption data https://data.cityofgainesville.org/Utilities/GRU-Customer-Electric-Consumption/gk3k-9435
+* City of Gainesville Building Permits https://data.cityofgainesville.org/Building-Development/Building-Permits/p798-x3nx
+* Alachua County Property Assessor Improvements Data https://data2018-11-15t152007183z-acpa.opendata.arcgis.com/pages/gis-cama-data
 * Banner image (Carbon Zero: Imagining Cities That Can Save the Planet  https://www.amazon.com/Carbon-Zero-Imagining-Cities-Planet-ebook/dp/B00AEWHU8E)
  
  
