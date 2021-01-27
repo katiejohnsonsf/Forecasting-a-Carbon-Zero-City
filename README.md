@@ -11,7 +11,12 @@ My focus was on electrical consumption data from the City of Gainesville website
  
 Hundreds of cities globally have committed to Carbon Neutrality by 2035 - including New York and Seattle. I was curious how a smaller city that hadn't (yet) made a commitment might be doing towards a path to carbon neutrality. I chose Gainesville, FL due to its size and easily available electrical consumption data.
  
-This project aims to use machine learning to accurately predict the average future monthly electrical consumption reductions needed to achieve carbon neutrality by 2035 for each month along the way.
+This project aims to use machine learning to:  
+1. Accurately predict future monthly electrical consumption
+
+2. Determine which buildings might be the best candidates for energy efficiency improvements, and 
+
+3. Simulate how those improvements would impact future electrical consumption and a carbon zero goal.
  
 Predicting individual and aggregate reduction benchmarks could help expand investment and consumer cost savings opportunities in energy efficiency improvements.
 <br>
