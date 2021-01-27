@@ -285,6 +285,7 @@ https://data.census.gov/cedsci/profile?g=1600000US1225175
 * City of Gainesville Electrical Consumption data https://data.cityofgainesville.org/Utilities/GRU-Customer-Electric-Consumption/gk3k-9435
 * City of Gainesville Building Permits https://data.cityofgainesville.org/Building-Development/Building-Permits/p798-x3nx
 * Alachua County Property Assessor Improvements Data https://data2018-11-15t152007183z-acpa.opendata.arcgis.com/pages/gis-cama-data
+* Carbon Neutral Bellingham (other emissions sources) https://carbonneutralbellingham.com/
 * Banner image (Carbon Zero: Imagining Cities That Can Save the Planet  https://www.amazon.com/Carbon-Zero-Imagining-Cities-Planet-ebook/dp/B00AEWHU8E)
  
  
