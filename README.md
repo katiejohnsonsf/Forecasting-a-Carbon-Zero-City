@@ -14,9 +14,9 @@ Hundreds of cities globally have committed to Carbon Neutrality by 2035 - includ
 This project aims to use machine learning to:  
 1. Accurately predict future monthly electrical consumption
 
-2. Determine which buildings might be the best candidates for energy efficiency improvements, and 
+2. Prioritize addresses from highest to lowest energy efficiency improvement potential for optimal emissions reduction in project planning, and 
 
-3. Simulate how those improvements would impact future electrical consumption and a carbon zero goal.
+3. Simulate how making those improvements would impact future electrical consumption bringing the City closer to a carbon zero goal.
  
 Predicting individual and aggregate reduction benchmarks could help expand investment and consumer cost savings opportunities in energy efficiency improvements.
 <br>
