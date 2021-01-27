@@ -214,7 +214,7 @@ To look at the overall energy efficiency of the properties, I created a feature 
 
 ### Target Variable
 
-The International Code Council releases new building codes in three year cycles. These cycles started in 1927 with 30 release cycles to date. External research on U.S. building codes and EDA of the building data shows consumption per square foot steadily decreasing overtime indicating that a higher code release is a signal for energy efficiency performance. I used the code release number (1-30) as a target for predicting energy efficiency improvement opportunity. 
+The International Code Council releases new building codes in three year cycles. This release cycle began in 1927 with 30 code releases to date. External research on U.S. building codes and EDA of the building data shows consumption per square foot steadily decreasing overtime indicating that a higher code release is a signal for energy efficiency performance. I used the code release number (ranging 1-30) as a target for predicting energy efficiency improvement opportunity. 
 
 ### Predictor Variables 
 
