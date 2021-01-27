@@ -95,13 +95,6 @@ To get a clearer picture of the observed, trend, seasonal, residual patterns, I 
  
 ![Decomposition](images/diffed_seas_decomp.png)
  
-## Assumptions
- 
-The EPA egrid sites Carbon intensity for all of Florida (including Gainesville) as:<br>
-931.84 lb/MWh
- 
-Energy efficiency improvement and renewable energy transition rates will be constant between 2020 and 2035. This analogue judgemental adjustment is derived from projections in Bellingham's carbon policy.
- 
 ## Model
  
 ### SARIMA
