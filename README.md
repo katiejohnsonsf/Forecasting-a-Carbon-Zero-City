@@ -35,7 +35,7 @@ Predicting individual and aggregate reduction benchmarks could help expand inves
 
 ## Variable Creation
 
-Combining data into a single dataframe, I started by aggregating electrical consumption from individual addresses to find the average electrical consumption for each month for the city for each month since January 2012. Using Pandas groupby() and .sum(), I found 106 monthly values. I normalized the city's total consumption for each month by Gainesville's population each year to get my target variable, monthly average electrical consumption per capita. Below are the summary statistics and the plotted target values:
+Combining data into a single dataframe, I started by aggregating electrical consumption from individual addresses to find the city's average electrical consumption for each month since January 2012. Using Pandas groupby() and .sum(), I found 106 monthly values. I normalized the city's total consumption for each month by Gainesville's population each year to get my target variable, monthly average electrical consumption per capita. Below are the summary statistics and the plotted target values:
 
 
 ### Summary Statistics for target variable (monthly kwh / capita)
@@ -104,7 +104,7 @@ To get a clearer picture of the observed, trend, seasonal, residual patterns, I 
  
 ### SARIMA
  
-Since my data has a strong seasonal component, I used the Seasonal AutoRegressive Integrated Moving Average model, which includes a parameter for seasonal legnth. This allows the model to achieve better stationarity without further manual transformations. 
+Since my data has a strong seasonal component, I used the Seasonal AutoRegressive Integrated Moving Average (SARIMA) model, which includes a parameter for seasonal length. This allows the model to achieve better stationarity without further manual transformations. 
  
 <br>
  
