@@ -1,6 +1,15 @@
 # Forecasting a Carbon Zero City
  
 ![Carbon Zero City Map](images/CO20_map.jpg)
+
+## Simulating a Carbon Zero City
+
+In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might track progress and plan improvements for reaching a carbon zero by 2035 goal by planning and tracking action in two year intervals. 
+
+This application shows a 4-part rollout of the predicted energy efficiency improvements from highest impact to lowest and how each wave of improvements impacts monthly average kwh per capita in Gainesville. 
+
+[![Simulation of Carbon Zero City](https://j.gifs.com/OMmoKY.gif)](https://vimeo.com/user108223732/review/500521198/9c9e9c5b1f)
+<br>
  
 ## Forecast Data
  
