@@ -15,7 +15,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div([
-    html.H1(children='Forecasting a Carbon Zero City'),
+    html.H1(children='Analytics for a Carbon Zero City'),
     dcc.Graph(id='graph-with-slider'),
     dcc.Slider(
         id='phase-slider',
@@ -34,12 +34,16 @@ app.layout = html.Div([
 def update_figure(selected_phase):
     filtered_df = df_ts[df_ts.phase == selected_phase]
 
+    x = df_ts.Date
+    y_upper = df_ts.upper_ci
+    y_lower = df_ts.lower_ci
+
     fig = px.line(filtered_df, x="Date", y="kwh avg",
                   hover_name="kwh avg")
 
     fig.add_trace(go.Scatter(
-        x=df_ts.Date, 
-        y=df_ts.lower_ci + df_ts.upper_ci,
+        x=x+x[::-1], 
+        y=y_upper+y_lower[::-1],
         fill='toself',
         fillcolor='rgba(0,100,80,0.2)',
         line_color='rgba(255,255,255,0)',
