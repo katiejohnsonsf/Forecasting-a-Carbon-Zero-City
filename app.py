@@ -16,16 +16,22 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div([
     html.H1(children='Analytics for a Carbon Zero City'),
-    dcc.Graph(id='graph-with-slider'),
+    dcc.Graph(id='graph-with-slider', style={'marginLeft': 10, 'marginRight': 10, 'marginTop': 10, 'marginBottom': 10, }),
     dcc.Slider(
         id='phase-slider',
         min=df_ts['phase'].min(),
         max=df_ts['phase'].max(),
         value=df_ts['phase'].min(),
-        marks={str(phase): str(phase) for phase in df_ts['phase'].unique()},
+        marks={
+            0: {'label': 'Business as Usual'},
+            1: {'label': '1,346 properties'},
+            2: {'label': '2,692 properties'},
+            3: {'label': '4,038 properties'},
+            4: {'label': '5,384 properties'}
+        },
         step=None
     )
-])
+], style={'marginLeft': '50px', 'marginTop': '50px', 'marginRight': '50px'})
 
 
 @app.callback(
@@ -49,8 +55,10 @@ def update_figure(selected_phase):
         line_color='rgba(255,255,255,0)',
     ))
 
-    fig.update_layout(transition_duration=500, 
-                      title='Energy Efficiency Improvements Jan 2020-Jan 2022 (5,384 / 100,313 properties)')
+    fig.update_layout(yaxis_range=[0,2200],
+                      showlegend=False,
+                      transition_duration=500, 
+                      title='Impact of Energy Efficiency Improvements in 5,384 / 100,313 properties in Gainesville, FL')
 
     return fig
 
