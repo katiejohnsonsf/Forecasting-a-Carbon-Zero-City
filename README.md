@@ -2,11 +2,27 @@
  
 ![Carbon Zero City Map](images/CO20_map.jpg)
 
-## Simulating a Carbon Zero City
+## Project Goal
 
-In the simulation, the efficiency improvements take place every 6 months between Jan 2020 and Jan 2022. This shows how a city might track progress and plan improvements for reaching a carbon zero by 2035 goal by planning and tracking action in two year intervals. 
+The project goal is to help energy efficiency professionals identify the best energy efficiency projects in a city, and for anyone to see how making these changes can impact a city’s carbon zero goal.
 
-This application shows a 4-part rollout of the predicted energy efficiency improvements from highest impact to lowest and how each wave of improvements impacts monthly average kwh per capita in Gainesville. 
+## Context
+
+Energy efficiency improvements for grid electrical consumption is a core strategy in Gainesville’s Climate Action Plan for achieving carbon zero goal by 2035. This dashboard aligns with Gainesville’s long-term carbon zero goal by tracking how 5,384 energy efficiency improvements impact the city's KPI for grid-electrical emissions, monthly average kWh per capita (see y-axis above). The property reductions impacted in the two-year reporting cycle make up ~5% of all buildings in Gainesville, but their 100% improvement reduces grid electrical consumption by 34% between January 2020 and January 2023. Moving the slider from left to right shows the reductions impact of these projects as they are completed. Planning over a two-year period allows people to contribute more actively to Gainesville’s Climate Action Plan 2-year reporting cycle, which allows the city to track its overall progress.
+
+Throughout each two-year reporting cycle, the data supports action and better decision-making by identifying the best energy efficiency opportunities in a city to tackle first. The energy efficiency projects are prioritized based on the difference between the predicted and actual ICC building code release used in a building’s construction. If a property is predicted to have used the 1990 building code but is recorded as having used the 1996 code release, there is a higher likelihood of more significant reductions. This prioritization method allows all properties in the dataset to be ranked from highest to lowest by reduction opportunity. This prioritization reduces more emissions for the city and has increased financial benefits for residents and energy efficiency companies. 
+
+The interactive demo of this project is viewable [here](http://katiejohnsonsf.pythonanywhere.com/).
+
+## Impact
+
+This dashboard helps people in the energy efficiency field prioritize energy efficiency projects for maximum impact and allows them to see how their work is impacting monthly average kWh per capita. It allows program managers at local non-profits, utilities, and energy efficiency retrofitting companies to size markets and prioritize reduction opportunities for a city. It helps answer the questions:
+
+>
+> 1. What is the optimal approach for addressing energy efficiency opportunities in a city?
+>
+> 2. To what extent will those energy efficiency improvements help a city get closer to its Carbon Zero goal?
+>
 
 [![Simulation of Carbon Zero City](https://j.gifs.com/OMmoKY.gif)](https://vimeo.com/user108223732/review/500521198/9c9e9c5b1f)
 <br>
