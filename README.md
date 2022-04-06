@@ -226,21 +226,21 @@ I used a corellation matrix to remove colinear features selecting the following 
 * Latitude
 * Longitude 
 * Heated Square Feet
-* Kwh per square food
+* Kwh per square foot
 * Avg kwh 
 
 To generate predictions, I split data 50/50 into training and test sets to maximize the number of predictions from unseen data. 
 
 After training six models, Random Forest was the best performing with a MSE of 8.099. 
 
-| Regression Model| Performance (MSE)     |
+| Regression Model| Performance (RMSE)    |
 | :---        |    :----:   |   
-| Linear      | 11.929 |
-| Lasso | 12.133  |
-| Ridge     | 11.956 |
-| KNN      | 13.354  |
-| OLS      | 11.637 |
-| Random Forest      | 8.099  |
+| Linear      | 3.45 |
+| Lasso | 3.48 |
+| Ridge     | 3.46 |
+| KNN      | 3.65 |
+| OLS      | 3.41 |
+| Random Forest      | 2.97 |
 
 <br>
 
@@ -312,7 +312,7 @@ https://data.census.gov/cedsci/profile?g=1600000US1225175
 * Banner image (Carbon Zero: Imagining Cities That Can Save the Planet  https://www.amazon.com/Carbon-Zero-Imagining-Cities-Planet-ebook/dp/B00AEWHU8E)
  
  
- 
+ Copyright © 2022 Katie Johnson
  
  
  
